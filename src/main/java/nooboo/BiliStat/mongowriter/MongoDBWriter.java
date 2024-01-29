@@ -1,4 +1,6 @@
-package nooboo.BiliStat;
+package nooboo.BiliStat.mongowriter;
+
+import nooboo.BiliStat.utils.*;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
@@ -6,21 +8,21 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.functions;
-import org.apache.spark.sql.types.*;
+import org.apache.spark.sql.types.DataTypes;
+import org.apache.spark.sql.types.Metadata;
+import org.apache.spark.sql.types.StructField;
+import org.apache.spark.sql.types.StructType;
+
 import static org.apache.spark.sql.functions.col;
 
-public class Stat {
+public class MongoDBWriter {
+
     public static void main(String[] args) {
 	    Config config = ConfigFactory.load("settings.conf");
 	    String mongoUri = config.getString("mongoUri");
-        SparkSession spark = SparkSession.builder()
-                .appName("BiliStat")
-                .master("local")
-		.config("spark.executor.extraJavaOptions", "-Dfile.encoding=UTF-8")
-		.config("spark.driver.extraJavaOptions", "-Dfile.encoding=UTF-8")
-                .config("spark.mongodb.input.uri", mongoUri)
-                .getOrCreate();
-        StructType schema = new StructType(new StructField[] {
+        SparkSession spark = SparkSessionUtils.createSparkSession(Constants.MONGODB, mongoUri);
+
+	    StructType schema = new StructType(new StructField[] {
             new StructField("_id", DataTypes.StringType, true, Metadata.empty()),
             new StructField("video_title", DataTypes.StringType, true, Metadata.empty()),
             new StructField("video_time", DataTypes.StringType, true, Metadata.empty()),
