@@ -1,17 +1,18 @@
-package nooboo.BiliStat.hbasewriter;
+package nooboo.BiliStat.hbasereader;
 
+import nooboo.BiliStat.core.DataReader;
 import nooboo.BiliStat.utils.*;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import org.apache.spark.sql.*;
 
-public class HbaseWriter {
+public class HBaseReader implements DataReader {
 
-    public static void main(String[] args) {
+    public void readData() {
         Config config = ConfigFactory.load("settings.conf");
         String hbaseUri = config.getString("hbaseUri");
-        SparkSession spark = SparkSessionUtils.createSparkSession(Constants.HBASE, hbaseUri);
+        SparkSession spark = SparkSessionUtil.createSparkSession(Constants.HBASE, hbaseUri);
 
         String hbaseTable = /*config.getString("hbaseTable")*/ "videoInfo";
         String catalog = "{...}";

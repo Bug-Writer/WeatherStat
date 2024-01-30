@@ -2,7 +2,7 @@ package nooboo.BiliStat.utils;
 
 import org.apache.spark.sql.SparkSession;
 
-public class SparkSessionUtils {
+public class SparkSessionUtil {
 
     public static SparkSession createSparkSession(String uriConst, String uri) {
         return SparkSession.builder()
@@ -13,5 +13,4 @@ public class SparkSessionUtils {
                 .config(uriConst, uri)
                 .getOrCreate();
     }
-
 }
