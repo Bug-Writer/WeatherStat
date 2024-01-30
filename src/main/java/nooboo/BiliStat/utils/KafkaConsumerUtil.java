@@ -15,7 +15,7 @@ public class KafkaConsumerUtil {
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
         Consumer<String, String> consumer = new KafkaConsumer<>(props);
-        consumer.subscribe(Collections.singletonList("videoInfo"));
+        consumer.subscribe(Collections.singletonList(uri));
         return consumer;
     }
 }
