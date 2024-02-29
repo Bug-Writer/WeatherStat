@@ -1,28 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>nooboo.BiliStat</groupId>
-  <artifactId>BiliWeeklyPopStat</artifactId>
+    <groupId>nooboo.WeatherStat</groupId>
+  <artifactId>WeatherStat</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>BiliWeeklyPopStat</name>
+  <name>WeatherStat</name>
   <url>http://maven.apache.org</url>
   <dependencies>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-core_2.12</artifactId>
-            <version>3.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.spark</groupId>
-            <artifactId>spark-sql_2.12</artifactId>
-            <version>3.5.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mongodb.spark</groupId>
-            <artifactId>mongo-spark-connector_2.12</artifactId>
-            <version>3.0.1</version>
-        </dependency>
         <dependency>
             <groupId>com.typesafe</groupId>
             <artifactId>config</artifactId>
@@ -40,11 +25,6 @@
             <version>2.5.7</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.hbase.connectors.spark</groupId>
-            <artifactId>hbase-spark</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
             <version>3.3.6</version>
@@ -53,6 +33,21 @@
           <groupId>org.apache.kafka</groupId>
           <artifactId>kafka-clients</artifactId>
           <version>3.6.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.flink</groupId>
+          <artifactId>flink-java</artifactId>
+          <version>1.16.1</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.flink</groupId>
+          <artifactId>flink-streaming-java_2.12</artifactId>
+          <version>1.14.4</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.flink</groupId>
+          <artifactId>flink-connector-kafka_2.12</artifactId>
+          <version>1.14.4</version>
       </dependency>
   </dependencies>
   <build>
@@ -64,7 +59,7 @@
             <configuration>
                 <archive>
                     <manifest>
-                        <mainClass>nooboo.BiliStat.Stat</mainClass>
+                        <mainClass>nooboo.WeatherStat.Stat</mainClass>
                     </manifest>
                 </archive>
                 <descriptorRefs>
